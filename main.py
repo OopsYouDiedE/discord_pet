@@ -57,7 +57,7 @@ class Base(interactions.Extension):
         pet_manager.save()
 
     @module_base.subcommand("start", sub_cmd_description="开始运行自动保存。")
-    async def start_work(self):
+    async def start_work(self, ctx: interactions.SlashContext):
         print('start!')
         self.save.start()
         self.update.start()
