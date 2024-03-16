@@ -63,7 +63,6 @@ class PetManager:
             },
         }
         self.pet_init[ID] = {
-            {
                 '基础变动': {
                     'buff': {
                         'hunger': -0.2,
@@ -71,7 +70,6 @@ class PetManager:
                     },
                     'left_time': 999999
                 }
-            }
         }
 
     def get_values(self):
