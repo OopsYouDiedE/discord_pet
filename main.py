@@ -36,8 +36,9 @@ class Base(interactions.Extension):
         required=True,
         opt_type=interactions.OptionType.STRING
     )
-    async def command_get_item(self, ctx: interactions.SlashContext, user_id: str, name: str,
+    async def command_get_item(self, ctx: interactions.SlashContext, user_id, name: str,
                                img_path: str):
-        user_id = str(user_id)
+        print(type(user_id))
+        user_id = user_id.id
         pet_manager.add_pet(user_id, name, img_path)
         await ctx.send(f"<@{user_id}>获得一只宠物！")
