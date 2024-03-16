@@ -6,18 +6,6 @@ from . import pet_dataset
 pet_manager = pet_dataset.PetManager()
 
 
-@Task.create(IntervalTrigger(minutes=1))
-async def update():
-    print("update statu!")
-    pet_manager.tick(1)
-
-
-@Task.create(IntervalTrigger(minutes=10))
-async def save():
-    print("save_value!")
-    pet_manager.save()
-
-
 async def my_id(ctx: interactions.BaseContext):
     if str(ctx.user.id) == '1029957776841130075': return True
     return False
@@ -57,3 +45,14 @@ class Base(interactions.Extension):
         user_id = user_id.id
         pet_manager.add_pet(user_id, name, img_path)
         await ctx.send(f"<@{user_id}>获得一只宠物！")
+
+    @Task.create(IntervalTrigger(minutes=1))
+    async def update(self):
+        print("update statu!")
+        pet_manager.tick(1)
+
+    @Task.create(IntervalTrigger(minutes=10))
+    async def save(self):
+        print("save_value!")
+        pet_manager.save()
+
