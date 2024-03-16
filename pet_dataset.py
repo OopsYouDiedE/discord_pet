@@ -63,16 +63,22 @@ class PetManager:
             },
         }
         self.pet_init[ID] = {
-                '基础变动': {
-                    'buff': {
-                        'hunger': -0.2,
-                        'happiness': -0.1
-                    },
-                    'left_time': 999999
-                }
+            '基础变动': {
+                'buff': {
+                    'hunger': -0.2,
+                    'happiness': -0.1
+                },
+                'left_time': 999999
+            }
         }
 
     def get_values(self):
         return {k: {k1: v1['value'] for k1, v1 in v} for k, v in self.pet_attr}
 
-
+    def save(self):
+        with open('buff_data.yaml', 'w', encoding='utf-8') as f:
+            yaml.dump(self.buff, f, allow_unicode=True)
+        with open('pet_attributes.yaml', 'w', encoding='utf-8') as f:
+            yaml.dump(self.pet_attr, f, allow_unicode=True)
+        with open('pet_init.yaml', 'w', encoding='utf-8') as f:
+            yaml.dump(self.pet_init, f, allow_unicode=True)
