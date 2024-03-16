@@ -47,6 +47,7 @@ class Base(interactions.Extension):
         await ctx.send(f"<@{user_id}>获得一只宠物！")
 
     async def on_startup(self):
+        print('start!')
         self.save.start()
         self.update.start()
 
