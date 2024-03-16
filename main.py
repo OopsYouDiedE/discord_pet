@@ -46,11 +46,6 @@ class Base(interactions.Extension):
         pet_manager.add_pet(user_id, name, img_path)
         await ctx.send(f"<@{user_id}>获得一只宠物！")
 
-    async def on_startup(self):
-        print('start!')
-        self.save.start()
-        self.update.start()
-
     @interactions.Task.create(interactions.IntervalTrigger(minutes=1))
     async def update(self):
         print("update statu!")
@@ -60,3 +55,9 @@ class Base(interactions.Extension):
     async def save(self):
         print("save_value!")
         pet_manager.save()
+
+    @module_base.subcommand("start", sub_cmd_description="开始运行自动保存。")
+    async def start_work(self):
+        print('start!')
+        self.save.start()
+        self.update.start()
